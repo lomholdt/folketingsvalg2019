@@ -42,14 +42,14 @@ export default {
   mounted() {
     axios.get(`/.netlify/functions/topnews`)
       .then(res => {
-        console.log(res);
         this.topNews = res.data
       })
-      .catch(err => console.info(err));
+      .catch(err => this.error = err);
   },
   data() {
     return {
-      topNews: null
+      topNews: null,
+      error: null,
     }
   }
 }
