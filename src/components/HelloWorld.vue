@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <pre>{{ topNews }}</pre>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -31,10 +32,25 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  mounted() {
+    axios.get(`/.netlify/functions/topnews`)
+      .then(res => {
+        console.log(res);
+        this.topNews = res.data
+      })
+      .catch(err => console.info(err));
+  },
+  data() {
+    return {
+      topNews: null
+    }
   }
 }
 </script>
