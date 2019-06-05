@@ -5,13 +5,13 @@ exports.handler = function(event, context, callback) {
     .then(res => {
       callback(null, {
         statusCode: 200,
-        body: JSON.stringify(res.data)
+        body: res.data
       })
     })
     .catch(err => {
       callback({
         statusCode: 408,
-        body: JSON.stringify(err)
+        body: err
       }, null)
     })
 }
